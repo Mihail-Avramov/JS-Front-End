@@ -3,7 +3,7 @@ function solve(number) {
     let divisorsSum = 0;
 
     if (number > 0) {
-        for (let index = 1; index < number; index++) {
+        for (let index = 1; index <= number / 2; index++) {
             if (number % index === 0) {
                 divisorsSum += index;
             }
@@ -22,4 +22,4 @@ function solve(number) {
     }
 }
 
-solve(1236498);
+solve(14);
