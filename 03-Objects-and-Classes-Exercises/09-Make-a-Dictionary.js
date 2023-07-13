@@ -44,7 +44,36 @@ function solve3(input) {
         });
 }
 
-solve3([
+function solve4(input) {
+    const dictionary = input.reduce(
+        (acc, curr) => ({
+            ...acc,
+            ...JSON.parse(curr),
+        }),
+        {}
+    );
+
+    Object.keys(dictionary)
+        .sort()
+        .forEach((key) => {
+            console.log(`Term: ${key} => Definition: ${dictionary[key]}`);
+        });
+}
+
+function solve5(input) {
+    const dictionary = input.reduce((acc, curr) => {
+        acc = { ...acc, ...JSON.parse(curr) };
+        return acc;
+    }, {});
+
+    Object.keys(dictionary)
+        .sort()
+        .forEach((key) => {
+            console.log(`Term: ${key} => Definition: ${dictionary[key]}`);
+        });
+}
+
+solve5([
     '{"Coffee":"A hot drink made from the roasted and ground seeds (coffee beans) of a tropical shrub."}',
     '{"Bus":"A large motor vehicle carrying passengers by road, typically one serving the public on a fixed route and for a fare."}',
     '{"Boiler":"A fuel-burning apparatus or container for heating water."}',
