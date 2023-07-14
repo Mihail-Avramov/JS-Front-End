@@ -73,7 +73,20 @@ function solve5(input) {
         });
 }
 
-solve5([
+function solve6(input) {
+    const dictionary = input.reduce((acc, curr) => {
+        acc = { ...acc, ...JSON.parse(curr) };
+        return acc;
+    }, {});
+
+    Object.keys(dictionary)
+        .sort((keyA, keyB) => keyA.localeCompare(keyB))
+        .forEach((key) => {
+            console.log(`Term: ${key} => Definition: ${dictionary[key]}`);
+        });
+}
+
+solve6([
     '{"Coffee":"A hot drink made from the roasted and ground seeds (coffee beans) of a tropical shrub."}',
     '{"Bus":"A large motor vehicle carrying passengers by road, typically one serving the public on a fixed route and for a fare."}',
     '{"Boiler":"A fuel-burning apparatus or container for heating water."}',
