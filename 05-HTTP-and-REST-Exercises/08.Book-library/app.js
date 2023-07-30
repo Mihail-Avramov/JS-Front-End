@@ -36,7 +36,12 @@ function attachEvents() {
                         [],
                         { "data-id": key }
                     );
-                    editBtn.addEventListener("click", editBook);
+                    editBtn.addEventListener("click", () => {
+                        formElements.inputTitle.value = value.title;
+                        formElements.inputAuthor.value = value.author;
+                        formElements.formTitle.textContent = "Edit FORM";
+                        formElements.formBtn.textContent = "Save";
+                    });
                     const deleteBtn = generateElement(
                         "button",
                         "Delete",
@@ -47,20 +52,6 @@ function attachEvents() {
                     );
                     deleteBtn.addEventListener("click", deleteBook);
                 });
-            })
-            .catch((err) => console.log(err));
-    }
-
-    function editBook(event) {
-        const id = event.target.getAttribute("data-id");
-        fetch(API_URL + id)
-            .then((res) => res.json())
-            .then((data) => {
-                formElements.inputTitle.value = data.title;
-                formElements.inputAuthor.value = data.author;
-                formElements.formTitle.textContent = "Edit FORM";
-                formElements.formBtn.textContent = "Save";
-                formElements.formBtn.setAttribute("data-id", id);
             })
             .catch((err) => console.log(err));
     }
