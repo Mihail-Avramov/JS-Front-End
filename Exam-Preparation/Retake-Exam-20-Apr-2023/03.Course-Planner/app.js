@@ -27,10 +27,13 @@ function addCourseHandler(event) {
         return;
     }
 
-    const newCourse = Object.entries(formInputs).reduce((acc, input) => {
-        acc[input[0]] = input[1].value;
-        return acc;
-    }, {});
+    const newCourse = Object.entries(formInputs).reduce(
+        (acc, [key, formInput]) => {
+            acc[key] = formInput.value;
+            return acc;
+        },
+        {}
+    );
 
     fetch(API_URL, {
         method: "POST",
@@ -55,8 +58,8 @@ function editCourseHandler(event) {
     }
 
     const editedCourse = Object.entries(formInputs).reduce(
-        (acc, input) => {
-            acc[input[0]] = input[1].value;
+        (acc, [key, formInput]) => {
+            acc[key] = formInput.value;
             return acc;
         },
         { _id: id }
