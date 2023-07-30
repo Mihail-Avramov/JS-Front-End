@@ -1,0 +1,51 @@
+array.pop() - връща последния елемент и го премахва от масива
+array.push(element) - добавя елемент в края на масива
+array.shift() - връща първия елемент и го премахва от масива
+array.unshift(element) - добавя елемент в началото на масива
+fruits.sort() - сортира низходящо (по азбучен ред)
+fruits.reverse(); - обръща масива (става възходящо сортиране)
+--------------------------------------------------------------------
+const points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return a - b});
+
+const points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return b - a});
+--------------------------------------------------------------------
+concat
+arrayResult = array1.concat(array2,array3) - създава нов масив като залепя към array1 списък с масиви (един или повече) един след друг
+--------------------------------------------------------------------
+array.flat()
+- method creates a new array with sub-array elements concatenated to a specified depth
+const myArr = [[1,2],[3,4],[5,6]];
+const newArr = myArr.flat(); => [1, 2, 3, 4, 5, 6]
+--------------------------------------------------------------------
+array.splice()
+(1) - method can be used to add new items to an array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+The first parameter (2) defines the position where new elements should be added (spliced in).
+The second parameter (0) defines how many elements should be removed.
+The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+(2) - method can be used to add new items and to remove items to an array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let removed = fruits.splice(2, 2, "Lemon", "Kiwi");
+console.log(removed) => Apple,Mango
+console.log(fruits) => Banana,Orange,Lemon,Kiwi
+(3) - Using splice() to Remove Elements
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(0, 1);
+console.log(fruits) => "Orange", "Apple", "Mango"
+--------------------------------------------------------------------
+array.slice()
+The slice() method creates a new array.
+The slice() method does not remove any elements from the source array.
+(1) - method slices out a piece of an array into a new array
+const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+const citrus = fruits.slice(3);
+console.log(citrus) => Apple, Mango
+(2) - method can take two arguments like slice(1, 3).
+The method then selects elements from the start argument, and up to (but not including) the end argument.
+const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+const citrus = fruits.slice(1,3);
+console.log(citrus) => Orange, Lemon
+--------------------------------------------------------------------
