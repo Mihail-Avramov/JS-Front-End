@@ -14,6 +14,8 @@ function solve() {
 
     publishBtn.addEventListener("click", publishTaskHandler);
 
+
+
     function publishTaskHandler() {
         if (Object.values(formTaskInputs).some((input) => input.value === "")) {
             return;

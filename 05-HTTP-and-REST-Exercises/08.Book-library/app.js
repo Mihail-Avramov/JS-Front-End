@@ -28,28 +28,14 @@ function attachEvents() {
                     generateElement("td", value.title, tr);
                     generateElement("td", value.author, tr);
                     const tdButons = generateElement("td", null, tr);
-                    const editBtn = generateElement(
-                        "button",
-                        "Edit",
-                        tdButons,
-                        "",
-                        [],
-                        { "data-id": key }
-                    );
+                    const editBtn = generateElement("button", "Edit", tdButons, "", [], { "data-id": key });
                     editBtn.addEventListener("click", () => {
                         formElements.inputTitle.value = value.title;
                         formElements.inputAuthor.value = value.author;
                         formElements.formTitle.textContent = "Edit FORM";
                         formElements.formBtn.textContent = "Save";
                     });
-                    const deleteBtn = generateElement(
-                        "button",
-                        "Delete",
-                        tdButons,
-                        "",
-                        [],
-                        { "data-id": key }
-                    );
+                    const deleteBtn = generateElement("button", "Delete", tdButons, "", [], { "data-id": key });
                     deleteBtn.addEventListener("click", deleteBook);
                 });
             })
@@ -77,6 +63,7 @@ function attachEvents() {
                 .then((data) => loadBooks())
                 .catch((err) => console.log(err));
         } else if (formElements.formBtn.textContent === "Save") {
+            book[_id] = id;
             fetch(API_URL + id, {
                 method: "PUT",
                 body: JSON.stringify(book),
@@ -97,14 +84,7 @@ function attachEvents() {
             .catch((err) => console.log(err));
     }
 
-    function generateElement(
-        type,
-        textContent,
-        parent,
-        id,
-        classesArray,
-        attributesObj
-    ) {
+    function generateElement(type, textContent, parent, id, classesArray, attributesObj) {
         //"HTML-TAG"
         const element = document.createElement(type);
 
