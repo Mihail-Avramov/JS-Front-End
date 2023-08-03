@@ -3,17 +3,19 @@ window.addEventListener("load", solve);
 function solve() {
     let likesCounter = 0;
     const form = document.querySelector("div.container-text > form");
+
     const formInputs = {
         genre: document.getElementById("genre"),
         name: document.getElementById("name"),
         author: document.getElementById("author"),
         date: document.getElementById("date"),
     };
+
     const songsCollection = document.querySelector("#all-hits > div");
     const savedSongs = document.querySelector("#saved-hits > div");
     const counterElement = document.querySelector("#total-likes > div > p");
-    const addBtn = document.getElementById("add-btn");
 
+    const addBtn = document.getElementById("add-btn");
     addBtn.addEventListener("click", addSong);
 
     function addSong(e) {
