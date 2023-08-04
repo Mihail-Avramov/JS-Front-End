@@ -53,29 +53,63 @@ function solve() {
             return;
         }
 
-        let [taskId, title, description, label, estimatedPoints, assignee] = Object.values(formInputs).map((input) => input.value);
-        tasksCollection[taskId] = { title, description, label, estimatedPoints: Number(estimatedPoints), assignee };
+        let [taskId, title, description, label, estimatedPoints, assignee] =
+            Object.values(formInputs).map((input) => input.value);
+        tasksCollection[taskId] = {
+            title,
+            description,
+            label,
+            estimatedPoints: Number(estimatedPoints),
+            assignee,
+        };
         taskCounter++;
         formContainer.reset();
 
         changePointsCounter();
 
-        const article = generateElement("article", null, tasksSection, `${taskId}`, ["task-card"]);
-        const testDiv = generateElement("div", `${label} ${specialSymbols[label]}`, article, null, ["task-card-label", `${priorityClass[label]}`]);
+        const article = generateElement(
+            "article",
+            null,
+            tasksSection,
+            `${taskId}`,
+            ["task-card"]
+        );
+        generateElement(
+            "div",
+            `${label} ${specialSymbols[label]}`,
+            article,
+            null,
+            ["task-card-label", `${priorityClass[label]}`]
+        );
         generateElement("h3", title, article, null, ["task-card-title"]);
-        generateElement("p", description, article, null, ["task-card-description"]);
-        generateElement("div", `Estimated at ${estimatedPoints} pts`, article, null, ["task-card-points"]);
-        generateElement("div", `Assigned to: ${assignee}`, article, null, ["task-card-assignee"]);
-        const buttonContainer = generateElement("div", null, article, null, ["task-card-actions"]);
+        generateElement("p", description, article, null, [
+            "task-card-description",
+        ]);
+        generateElement(
+            "div",
+            `Estimated at ${estimatedPoints} pts`,
+            article,
+            null,
+            ["task-card-points"]
+        );
+        generateElement("div", `Assigned to: ${assignee}`, article, null, [
+            "task-card-assignee",
+        ]);
+        const buttonContainer = generateElement("div", null, article, null, [
+            "task-card-actions",
+        ]);
         const deleteBtn = generateElement("button", "Delete", buttonContainer);
         deleteBtn.addEventListener("click", loadConfirmDeleteHandler);
     }
 
     function loadConfirmDeleteHandler(event) {
         let taskId = event.target.parentElement.parentElement.id;
-        let [title, description, label, estimatedPoints, assignee] = Object.values(tasksCollection[taskId]);
+        let [title, description, label, estimatedPoints, assignee] =
+            Object.values(tasksCollection[taskId]);
 
-        Object.values(formInputs).map((input) => input.setAttribute("disabled", true));
+        Object.values(formInputs).map((input) =>
+            input.setAttribute("disabled", true)
+        );
 
         formInputs.taskIdInput.value = taskId;
         formInputs.titleInput.value = title;
@@ -92,7 +126,9 @@ function solve() {
         const currentId = formInputs.taskIdInput.value;
         delete tasksCollection[currentId];
         document.getElementById(currentId).remove();
-        Object.values(formContainer).map((input) => input.removeAttribute("disabled"));
+        Object.values(formInputs).map((input) =>
+            input.removeAttribute("disabled")
+        );
         formContainer.reset();
         formInputs.taskIdInput.value = `task-${taskCounter}`;
         createTaskBtn.removeAttribute("disabled");
@@ -100,7 +136,14 @@ function solve() {
         changePointsCounter();
     }
 
-    function generateElement(type, textContent, parent, id, classesArray, attributesObj) {
+    function generateElement(
+        type,
+        textContent,
+        parent,
+        id,
+        classesArray,
+        attributesObj
+    ) {
         //"HTML-TAG"
         const element = document.createElement(type);
 
